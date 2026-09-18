@@ -117,7 +117,7 @@ do_package() {
         "${APP_BUNDLE}"
 
     info "Creating ${ARM64_TARBALL}..."
-    tar -czf "${ARM64_TARBALL}" -C dist "${APP_NAME}.app"
+    tar -czf "${ARM64_TARBALL}" -C dist "${DISPLAY_NAME}.app"
     success "Created ${ARM64_TARBALL}"
 
     rm -rf "${APP_BUNDLE}"
