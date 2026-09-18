@@ -18,8 +18,9 @@ set -euo pipefail
 
 FORMULA="Casks/weather-dashboard.rb"
 APP_NAME="weather-dashboard"
+DISPLAY_NAME="Weather Dashboard"
 BUILD_DIR="dist/${APP_NAME}"
-APP_BUNDLE="dist/${APP_NAME}.app"
+APP_BUNDLE="dist/${DISPLAY_NAME}.app"
 
 # Read version from neutralino.config.json (portable — no jq required)
 VERSION=$(grep '"appVersion"' neutralino.config.json | head -1 | sed 's/.*: *"\(.*\)".*/\1/')

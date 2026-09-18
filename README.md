@@ -28,7 +28,7 @@ brew install weather-dashboard
 
 > `brew trust` is required because the tap is not hosted in a `homebrew-*` named repository. It marks the tap as trusted so Homebrew will run its cask scripts.
 
-The cask installs `weather-dashboard.app` directly into `/Applications`.
+The cask installs `Weather Dashboard.app` directly into `/Applications`.
 
 ### First-launch steps
 
@@ -43,7 +43,7 @@ Because the app is ad-hoc signed (not notarised with an Apple Developer certific
 Alternatively, clear the quarantine flag from the terminal:
 
 ```bash
-xattr -dr com.apple.quarantine /Applications/weather-dashboard.app
+xattr -dr com.apple.quarantine "/Applications/Weather Dashboard.app"
 ```
 
 **2. Location permission**
@@ -194,7 +194,7 @@ chmod +x package-mac.sh   # first time only
 ### What the script does
 
 1. Runs `neu build` to compile the app and bundle resources
-2. Creates a standard `.app` directory structure under `dist/weather-dashboard.app/`
+2. Creates a standard `.app` directory structure under `dist/Weather Dashboard.app/`
 3. Copies the `mac_arm64` binary into `Contents/MacOS/`
 4. Copies `resources.neu` alongside the binary
 5. Compiles `src/get-location.swift` into a CoreLocation helper binary
@@ -205,7 +205,7 @@ chmod +x package-mac.sh   # first time only
 ### Output
 
 ```
-dist/weather-dashboard.app/
+dist/Weather Dashboard.app/
 ├── Contents/
 │   ├── Info.plist
 │   ├── MacOS/
@@ -220,10 +220,10 @@ dist/weather-dashboard.app/
 
 ```bash
 # Run directly from the project
-open dist/weather-dashboard.app
+open "dist/Weather Dashboard.app"
 
 # Install to Applications
-cp -R dist/weather-dashboard.app /Applications/
+cp -R "dist/Weather Dashboard.app" /Applications/
 ```
 
 ### Security warning on first launch
@@ -237,7 +237,7 @@ macOS Gatekeeper will block an unsigned app. To allow it:
 Alternatively, from the terminal:
 
 ```bash
-xattr -dr com.apple.quarantine dist/weather-dashboard.app
+xattr -dr com.apple.quarantine "dist/Weather Dashboard.app"
 ```
 
 ---

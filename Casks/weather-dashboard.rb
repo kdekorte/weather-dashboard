@@ -9,7 +9,7 @@ cask "weather-dashboard" do
 
   depends_on macos: :big_sur
 
-  app "weather-dashboard.app"
+  app "Weather Dashboard.app"
 
   zap trash: [
     "~/Library/Application Support/weather-dashboard",
