@@ -189,9 +189,10 @@ function renderCurrent(data, locationName) {
       <polygon points="8,1 11,13 8,10 5,13" fill="currentColor"/>
     </svg>${windDir(deg)} ${fmtSpeed(c.wind_speed_10m)}`;
   const rh = c.relative_humidity_2m;
-  const rhColor = rh < 30 ? '#d4790a'   // dry — orange
-                : rh <= 60 ? '#2c8a3a'  // comfortable — green
-                : '#3b82d4';            // humid — blue
+  const dark = AppConfig.theme === 'dark';
+  const rhColor = rh < 30  ? (dark ? '#ffb347' : '#d4790a')   // dry — orange
+                : rh <= 60 ? (dark ? '#4dd87a' : '#2c8a3a')   // comfortable — green
+                :             (dark ? '#7ec8ff' : '#3b82d4');  // humid — blue
   document.getElementById('weather-humidity').innerHTML =
     `<span style="color:${rhColor};font-weight:600;">${rh}%</span> humidity`;
 
@@ -199,11 +200,11 @@ function renderCurrent(data, locationName) {
   const uv = daily.uv_index_max?.[0];
   const uvEl = document.getElementById('weather-uv');
   if (uv != null) {
-    const uvColor = uv <= 2 ? '#2c8a3a'
-                  : uv <= 5 ? '#d4790a'
-                  : uv <= 7 ? '#c0392b'
-                  : uv <= 10 ? '#7c3aed'
-                  : '#7c3aed';
+    const uvColor = uv <= 2 ? (dark ? '#4dd87a' : '#2c8a3a')
+                  : uv <= 5 ? (dark ? '#ffb347' : '#d4790a')
+                  : uv <= 7 ? (dark ? '#ff6b6b' : '#c0392b')
+                  : uv <= 10 ? (dark ? '#c084fc' : '#7c3aed')
+                  :             (dark ? '#c084fc' : '#7c3aed');
     uvEl.innerHTML =
       `<svg viewBox="0 0 13 13" width="12" height="12" style="display:inline-block;vertical-align:middle;margin-right:2px;" fill="${uvColor}">
         <circle cx="6.5" cy="6.5" r="3"/>
