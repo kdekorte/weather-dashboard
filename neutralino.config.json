@@ -49,6 +49,7 @@
     "timeFormat": "12h",
     "refreshIntervalSeconds": 300,
     "radarOpacity": 0.6,
-    "radarFrameCount": 2
+    "radarFrameCount": 2,
+    "showMenuBar": true
   }
 }
