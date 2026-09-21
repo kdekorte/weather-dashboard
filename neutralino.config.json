@@ -50,6 +50,7 @@
     "refreshIntervalSeconds": 300,
     "radarOpacity": 0.6,
     "radarFrameCount": 2,
-    "showMenuBar": true
+    "showMenuBar": true,
+    "theme": "light"
   }
 }

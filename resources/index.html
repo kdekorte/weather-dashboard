@@ -6,6 +6,7 @@
   <title>Weather Dashboard</title>
   <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
   <link rel="stylesheet" href="styles/main.css">
+  <link id="theme-dark" rel="stylesheet" href="styles/dark.css" disabled>
 </head>
 <body>
   <div id="app">
@@ -190,6 +191,11 @@
         });
       }
       await initConfig();
+
+      // Apply theme
+      if (AppConfig.theme === 'dark') {
+        document.getElementById('theme-dark').removeAttribute('disabled');
+      }
 
       // Set native menu bar if enabled in config (must run after initConfig)
       if (typeof Neutralino !== 'undefined' && AppConfig.showMenuBar) {
