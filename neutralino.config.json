@@ -1,6 +1,6 @@
 {
   "applicationId": "com.kdekorte.weather-dashboard",
-  "appVersion": "1.0.3",
+  "appVersion": "1.0.4",
   "defaultMode": "window",
   "port": 0,
   "url": "/",
