@@ -337,7 +337,7 @@ function renderForecast(data) {
       <div class="fc-line2">
         <span class="fc-hi">${hi}°</span>
         <span class="fc-lo">${lo}°</span>
-        <span class="fc-precip">💧${precip}%</span>
+        <span class="fc-precip"><svg viewBox="0 0 10 13" width="9" height="11" style="display:inline-block;vertical-align:middle;margin-right:1px;" fill="#3b82d4"><path d="M5 1 C5 1 1 6 1 8.5 a4 4 0 0 0 8 0 C9 6 5 1 5 1 Z"/></svg>${precip}%</span>
       </div>
     `;
     container.appendChild(row);
