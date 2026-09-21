@@ -171,34 +171,6 @@
           Neutralino.app.exit();
         });
 
-        // Set native menu bar if enabled in config
-        Neutralino.events.on('ready', async () => {
-          if (!AppConfig.showMenuBar) return;
-          try {
-            await Neutralino.window.setMainMenu([
-              {
-                id: 'app',
-                text: 'Weather Dashboard',
-                menuItems: [
-                  { id: 'about', text: 'About Weather Dashboard' },
-                  {
-                    id: 'settings-menu',
-                    text: 'Settings',
-                    menuItems: [
-                      { id: 'set-location', text: 'Set Location…', shortcut: 'c,' },
-                      { id: 'clear-config', text: 'Clear Saved Config…' }
-                    ]
-                  },
-                  { text: '-' },
-                  { id: 'quit', text: 'Quit Weather Dashboard', shortcut: 'q' }
-                ]
-              }
-            ]);
-          } catch (_) {
-            // setMainMenu not supported on this platform — no-op
-          }
-        });
-
         // mainMenuItemClicked fires at the top level — register outside 'ready'
         Neutralino.events.on('mainMenuItemClicked', (e) => {
           const id = e.detail?.id ?? e.detail;
@@ -218,6 +190,34 @@
         });
       }
       await initConfig();
+
+      // Set native menu bar if enabled in config (must run after initConfig)
+      if (typeof Neutralino !== 'undefined' && AppConfig.showMenuBar) {
+        try {
+          await Neutralino.window.setMainMenu([
+            {
+              id: 'app',
+              text: 'Weather Dashboard',
+              menuItems: [
+                { id: 'about', text: 'About Weather Dashboard' },
+                {
+                  id: 'settings-menu',
+                  text: 'Settings',
+                  menuItems: [
+                    { id: 'set-location', text: 'Set Location…', shortcut: 'c,' },
+                    { id: 'clear-config', text: 'Clear Saved Config…' }
+                  ]
+                },
+                { text: '-' },
+                { id: 'quit', text: 'Quit Weather Dashboard', shortcut: 'q' }
+              ]
+            }
+          ]);
+        } catch (_) {
+          // setMainMenu not supported on this platform — no-op
+        }
+      }
+
       initClock();
       initWeather();
       initMap();
