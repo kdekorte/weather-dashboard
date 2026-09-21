@@ -22,7 +22,7 @@ html, body {
 
 /* ============================================================
    Root layout — 3 columns
-   col-clock-weather (230px) | map (370px) | panel-forecast (200px)
+   col-clock-weather (230px) | map (410px) | panel-forecast (160px)
    ============================================================ */
 #app {
   display: flex;
@@ -316,7 +316,7 @@ html, body {
    Forecast panel — right column, 2-line cards (130px wide)
    ============================================================ */
 #panel-forecast {
-  width: 130px;
+  width: 160px;
   height: 100vh;
   flex-shrink: 0;
   display: flex;
@@ -360,7 +360,7 @@ html, body {
 }
 
 .fc-day {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: #2c3550;
   text-transform: uppercase;
@@ -368,8 +368,8 @@ html, body {
 }
 
 .fc-row img {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   flex-shrink: 0;
 }
 
@@ -378,22 +378,22 @@ html, body {
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  gap: 4px;
+  gap: 5px;
 }
 
 .fc-hi {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 700;
   color: #d4790a;
 }
 
 .fc-lo {
-  font-size: 12px;
+  font-size: 14px;
   color: #6b7694;
 }
 
 .fc-precip {
-  font-size: 11px;
+  font-size: 13px;
   color: #3b82d4;
   margin-left: auto;
 }
@@ -402,7 +402,7 @@ html, body {
    Map panel — middle column (440px)
    ============================================================ */
 #panel-map {
-  width: 440px;
+  width: 410px;
   height: 100vh;
   flex-shrink: 0;
   position: relative;
@@ -410,7 +410,7 @@ html, body {
 }
 
 #map {
-  width: 440px;
+  width: 410px;
   height: 100vh;
 }
 
