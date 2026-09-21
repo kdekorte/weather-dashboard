@@ -304,7 +304,7 @@ function renderPrecipBar(data) {
         ? `${hr % 12 || 12}${hr >= 12 ? 'p' : 'a'}`
         : String(hr).padStart(2, '0');
       labels += `<text x="${x + BAR_W / 2}" y="${H + LABEL_H - 2}" text-anchor="middle"
-        font-size="8" fill="#6b7694">${label}</text>`;
+        font-size="8" fill="${AppConfig.theme === 'dark' ? '#a8d8f0' : '#6b7694'}">${label}</text>`;
     }
   }
 
