@@ -1,0 +1,158 @@
+/* ============================================================
+   Dark theme — overrides for main.css
+   Applied when AppConfig.theme === 'dark'
+   Cyan-blue bokeh palette
+   ============================================================ */
+
+html, body {
+  background: #0a2a4a;
+  color: #e0f4ff;
+}
+
+/* ── Left column ─────────────────────────────────────────── */
+#col-clock-weather {
+  border-right-color: #1a7cc2;
+}
+
+#panel-clock {
+  background: #0d3d6b;
+  border-bottom-color: #1a7cc2;
+}
+
+#clock-time {
+  color: #e0f4ff;
+}
+
+#clock-ampm {
+  color: #5ab4e0;
+}
+
+.panel-divider {
+  border-top-color: #1a7cc2;
+}
+
+#clock-dayofweek {
+  color: #c2eaff;
+}
+
+#clock-date {
+  color: #5ab4e0;
+}
+
+/* ── Current conditions ──────────────────────────────────── */
+#panel-current {
+  background: #0b3860;
+}
+
+#weather-location {
+  color: #5ab4e0;
+}
+
+#weather-temp {
+  color: #e0f4ff;
+}
+
+.unit-toggle {
+  color: #29b6f6;
+}
+
+.unit-toggle:hover {
+  background: #1a7cc2;
+}
+
+#weather-condition {
+  color: #c2eaff;
+}
+
+#weather-feels-like {
+  color: #5ab4e0;
+}
+
+#current-details {
+  border-top-color: #1a7cc2;
+}
+
+#current-details > * {
+  color: #c2eaff;
+}
+
+#weather-humidity {
+  color: #7ecfef;
+}
+
+#weather-sun {
+  color: #5ab4e0;
+}
+
+#weather-updated {
+  color: #ff7a7a;
+}
+
+/* ── Forecast panel ──────────────────────────────────────── */
+#panel-forecast {
+  background: #0a2a4a;
+  border-left-color: #1a7cc2;
+}
+
+.fc-row {
+  border-bottom-color: #1a4f7a;
+}
+
+.fc-day {
+  color: #c2eaff;
+}
+
+.fc-hi {
+  color: #ffb347;
+}
+
+.fc-lo {
+  color: #5ab4e0;
+}
+
+.fc-precip {
+  color: #29b6f6;
+}
+
+/* ── Radar timestamp ─────────────────────────────────────── */
+#radar-timestamp {
+  background: rgba(10,42,74,0.88);
+  color: #c2eaff;
+}
+
+/* ── Leaflet controls ────────────────────────────────────── */
+.leaflet-control-zoom a,
+.leaflet-bar a {
+  background: #0d3d6b !important;
+  color: #c2eaff !important;
+  border-color: #1a7cc2 !important;
+}
+
+.leaflet-control-zoom a:hover,
+.leaflet-bar a:hover {
+  background: #1a7cc2 !important;
+  color: #e0f4ff !important;
+}
+
+.leaflet-home-btn a {
+  color: #c2eaff !important;
+}
+
+.leaflet-home-btn a:hover {
+  color: #e0f4ff !important;
+  background-color: #1a7cc2 !important;
+}
+
+.leaflet-control-attribution {
+  background: rgba(10,42,74,0.82) !important;
+  color: #5ab4e0 !important;
+}
+
+.leaflet-control-attribution a {
+  color: #29b6f6 !important;
+}
+
+/* ── Loading ring ────────────────────────────────────────── */
+.loading-ring.active::after {
+  background: linear-gradient(90deg, transparent, #29b6f6, transparent);
+}
