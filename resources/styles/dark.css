@@ -65,7 +65,7 @@ html, body {
 }
 
 #weather-feels-like {
-  color: #5ab4e0;
+  color: #a8d8f0;
 }
 
 #current-details {
@@ -73,15 +73,15 @@ html, body {
 }
 
 #current-details > * {
-  color: #c2eaff;
+  color: #e0f4ff;
 }
 
 #weather-humidity {
-  color: #7ecfef;
+  color: #a8d8f0;
 }
 
 #weather-sun {
-  color: #5ab4e0;
+  color: #a8d8f0;
 }
 
 #weather-updated {
