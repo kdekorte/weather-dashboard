@@ -81,7 +81,7 @@
       <h3 style="margin:0 0 16px;font-size:15px;color:#1a2030;">Set Home Location</h3>
 
       <!-- GPS toggle -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
         <div>
           <div style="font-size:13px;font-weight:600;color:#1a2030;">Prefer GPS Location</div>
           <div style="font-size:11px;color:#6b7694;margin-top:1px;">Use device location when available</div>
@@ -90,6 +90,20 @@
           <input id="modal-use-gps" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
           <span id="modal-gps-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
             <span id="modal-gps-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
+          </span>
+        </label>
+      </div>
+
+      <!-- Dark theme toggle -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a2030;">Dark Theme</div>
+          <div style="font-size:11px;color:#6b7694;margin-top:1px;">Switch to the cyan-blue dark palette</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:36px;height:20px;flex-shrink:0;">
+          <input id="modal-dark-theme" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+          <span id="modal-dark-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
+            <span id="modal-dark-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
           </span>
         </label>
       </div>
@@ -267,6 +281,15 @@
         gpsTrack.style.background = AppConfig.useGeolocation ? '#3b82d4' : '#c8cdd8';
         gpsThumb.style.transform  = AppConfig.useGeolocation ? 'translateX(16px)' : 'none';
 
+        // Reflect current dark theme toggle state
+        const darkCheckbox = document.getElementById('modal-dark-theme');
+        const darkTrack    = document.getElementById('modal-dark-track');
+        const darkThumb    = document.getElementById('modal-dark-thumb');
+        const isDark = AppConfig.theme === 'dark';
+        darkCheckbox.checked = isDark;
+        darkTrack.style.background = isDark ? '#3b82d4' : '#c8cdd8';
+        darkThumb.style.transform  = isDark ? 'translateX(16px)' : 'none';
+
         overlay.style.display = 'flex';
         latInput.focus();
       }
@@ -287,6 +310,13 @@
         const on = e.target.checked;
         document.getElementById('modal-gps-track').style.background = on ? '#3b82d4' : '#c8cdd8';
         document.getElementById('modal-gps-thumb').style.transform  = on ? 'translateX(16px)' : 'none';
+      });
+
+      // Dark theme toggle visual behaviour
+      document.getElementById('modal-dark-theme').addEventListener('change', (e) => {
+        const on = e.target.checked;
+        document.getElementById('modal-dark-track').style.background = on ? '#3b82d4' : '#c8cdd8';
+        document.getElementById('modal-dark-thumb').style.transform  = on ? 'translateX(16px)' : 'none';
       });
 
       document.getElementById('modal-cancel').addEventListener('click', closeLocationModal);
@@ -353,10 +383,21 @@
 
         closeLocationModal();
 
-        const useGps = document.getElementById('modal-use-gps').checked;
+        const useGps  = document.getElementById('modal-use-gps').checked;
+        const useDark = document.getElementById('modal-dark-theme').checked;
+        const newTheme = useDark ? 'dark' : 'light';
 
         // Save to override file and apply live
-        await saveOverrideConfig({ latitude: lat, longitude: lon, useGeolocation: useGps });
+        await saveOverrideConfig({ latitude: lat, longitude: lon, useGeolocation: useGps, theme: newTheme });
+
+        // Apply theme change immediately without restart
+        const darkSheet = document.getElementById('theme-dark');
+        if (useDark) {
+          darkSheet.removeAttribute('disabled');
+        } else {
+          darkSheet.setAttribute('disabled', '');
+        }
+        AppConfig.theme = newTheme;
 
         if (useGps) {
           // Re-run coordinate resolution so GPS is tried immediately
