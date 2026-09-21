@@ -19,6 +19,7 @@ const DEFAULT_CONFIG = {
   refreshIntervalSeconds: 300,
   radarOpacity: 0.6,
   radarFrameCount: 2,
+  showMenuBar: true,
 };
 
 // Fallback coordinates: Kansas City, MO

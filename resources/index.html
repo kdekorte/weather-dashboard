@@ -171,8 +171,9 @@
           Neutralino.app.exit();
         });
 
-        // Set native menu bar
+        // Set native menu bar if enabled in config
         Neutralino.events.on('ready', async () => {
+          if (!AppConfig.showMenuBar) return;
           try {
             await Neutralino.window.setMainMenu([
               {
