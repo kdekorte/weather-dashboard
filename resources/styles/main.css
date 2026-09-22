@@ -417,7 +417,7 @@ html, body {
 #radar-timestamp {
   position: absolute;
   bottom: 6px;
-  right: 6px;
+  left: 6px;
   background: rgba(255,255,255,0.82);
   color: #2c3550;
   font-size: 10px;
