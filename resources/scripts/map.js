@@ -25,6 +25,10 @@ let _radarTimestamps = [];   // unix timestamps matching each layer
 let _radarFrameIdx   = 0;
 let _radarAnimTimer  = null;
 let _radarRefreshTimer = null;
+let _idleTimer       = null;   // auto-return-to-home timer
+
+// 10 minutes of map inactivity before returning home
+const MAP_IDLE_TIMEOUT_MS = 10 * 60 * 1000;
 
 // ---- RainViewer ---------------------------------------------------------
 
@@ -322,6 +326,9 @@ function initMap() {
     setPinnedLocation(lat, lng);
   });
 
+  // Reset idle timer on any map interaction
+  _map.on('moveend zoomend', resetIdleTimer);
+
   // Ensure Leaflet picks up the actual rendered size (100vh vs fixed px)
   setTimeout(() => _map.invalidateSize(), 100);
 
@@ -330,6 +337,13 @@ function initMap() {
 
   // Refresh radar every 5 minutes independent of weather refresh
   _radarRefreshTimer = setInterval(loadRadar, RADAR_REFRESH_MS);
+}
+
+// ── Idle auto-return ──────────────────────────────────────────────────────────
+
+function resetIdleTimer() {
+  if (_idleTimer) clearTimeout(_idleTimer);
+  _idleTimer = setTimeout(resetToHome, MAP_IDLE_TIMEOUT_MS);
 }
 
 // ── Pinned location helpers ───────────────────────────────────────────────────
