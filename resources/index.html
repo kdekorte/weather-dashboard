@@ -75,13 +75,77 @@
 
   </div>
 
-  <!-- Set Location modal -->
+  <!-- Settings modal -->
+  <div id="settings-modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:9000;align-items:center;justify-content:center;">
+    <div style="background:#fff;border-radius:10px;padding:24px 28px;width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.25);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;">
+      <h3 style="margin:0 0 16px;font-size:15px;color:#1a2030;">Settings</h3>
+
+      <!-- Units toggle -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a2030;">Units</div>
+          <div style="font-size:11px;color:#6b7694;margin-top:1px;">Imperial (°F) or Metric (°C)</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:36px;height:20px;flex-shrink:0;">
+          <input id="settings-units" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+          <span id="settings-units-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
+            <span id="settings-units-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
+          </span>
+        </label>
+      </div>
+
+      <!-- Time format toggle -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a2030;">Time Format</div>
+          <div style="font-size:11px;color:#6b7694;margin-top:1px;">24-hour clock</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:36px;height:20px;flex-shrink:0;">
+          <input id="settings-timeformat" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+          <span id="settings-timeformat-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
+            <span id="settings-timeformat-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
+          </span>
+        </label>
+      </div>
+
+      <!-- Dark theme toggle -->
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+        <div>
+          <div style="font-size:13px;font-weight:600;color:#1a2030;">Dark Theme</div>
+          <div style="font-size:11px;color:#6b7694;margin-top:1px;">Switch to the cyan-blue dark palette</div>
+        </div>
+        <label style="position:relative;display:inline-block;width:36px;height:20px;flex-shrink:0;">
+          <input id="settings-dark-theme" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
+          <span id="settings-dark-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
+            <span id="settings-dark-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
+          </span>
+        </label>
+      </div>
+
+      <div style="display:flex;gap:8px;align-items:center;justify-content:flex-end;">
+        <button id="settings-clear"
+          style="padding:7px 12px;border:1px solid #e5b4b4;border-radius:6px;background:#fdf2f2;font-size:12px;cursor:pointer;color:#c0392b;font-weight:600;white-space:nowrap;margin-right:auto;">
+          Reset
+        </button>
+        <button id="settings-cancel"
+          style="padding:7px 16px;border:1px solid #c8cdd8;border-radius:6px;background:#f0f2f5;font-size:13px;cursor:pointer;color:#2c3550;white-space:nowrap;">
+          Cancel
+        </button>
+        <button id="settings-save"
+          style="padding:7px 16px;border:none;border-radius:6px;background:#3b82d4;font-size:13px;cursor:pointer;color:#fff;font-weight:600;white-space:nowrap;">
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Location modal -->
   <div id="modal-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:9000;align-items:center;justify-content:center;">
     <div style="background:#fff;border-radius:10px;padding:24px 28px;width:320px;box-shadow:0 8px 32px rgba(0,0,0,0.25);font-family:-apple-system,'Segoe UI',system-ui,sans-serif;">
       <h3 style="margin:0 0 16px;font-size:15px;color:#1a2030;">Set Home Location</h3>
 
       <!-- GPS toggle -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
         <div>
           <div style="font-size:13px;font-weight:600;color:#1a2030;">Prefer GPS Location</div>
           <div style="font-size:11px;color:#6b7694;margin-top:1px;">Use device location when available</div>
@@ -90,20 +154,6 @@
           <input id="modal-use-gps" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
           <span id="modal-gps-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
             <span id="modal-gps-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
-          </span>
-        </label>
-      </div>
-
-      <!-- Dark theme toggle -->
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;padding:10px 12px;background:#f7f8fa;border:1px solid #e5e7eb;border-radius:8px;">
-        <div>
-          <div style="font-size:13px;font-weight:600;color:#1a2030;">Dark Theme</div>
-          <div style="font-size:11px;color:#6b7694;margin-top:1px;">Switch to the cyan-blue dark palette</div>
-        </div>
-        <label style="position:relative;display:inline-block;width:36px;height:20px;flex-shrink:0;">
-          <input id="modal-dark-theme" type="checkbox" style="opacity:0;width:0;height:0;position:absolute;">
-          <span id="modal-dark-track" style="position:absolute;inset:0;border-radius:20px;background:#c8cdd8;cursor:pointer;transition:background 0.2s;">
-            <span id="modal-dark-thumb" style="position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;"></span>
           </span>
         </label>
       </div>
@@ -192,7 +242,7 @@
           if (id === 'about') openAboutModal();
           if (id === 'quit') Neutralino.app.exit();
           if (id === 'set-location') openLocationModal();
-          if (id === 'clear-config') clearConfig();
+          if (id === 'open-settings') openSettingsModal();
         });
 
         // Cmd+Q / Ctrl+Q — Neutralino menu shortcuts are display-only,
@@ -221,11 +271,11 @@
               menuItems: [
                 { id: 'about', text: 'About Weather Dashboard' },
                 {
-                  id: 'settings-menu',
-                  text: 'Settings',
+                  id: 'preferences-menu',
+                  text: 'Preferences',
                   menuItems: [
-                    { id: 'set-location', text: 'Set Location…', shortcut: 'c,' },
-                    { id: 'clear-config', text: 'Clear Saved Config…' }
+                    { id: 'open-settings', text: 'Preferences…' },
+                    { id: 'set-location', text: 'Location…', shortcut: 'c,' },
                   ]
                 },
                 { text: '-' },
@@ -261,6 +311,77 @@
         if (e.target === document.getElementById('about-modal-overlay')) closeAboutModal();
       });
 
+      // ── Settings modal ───────────────────────────────────────────────────
+      function openSettingsModal() {
+        const isMetric = AppConfig.units === 'metric';
+        const is24h    = AppConfig.timeFormat === '24h';
+        const isDark   = AppConfig.theme === 'dark';
+
+        const setToggle = (trackId, thumbId, on) => {
+          document.getElementById(trackId).style.background = on ? '#3b82d4' : '#c8cdd8';
+          document.getElementById(thumbId).style.transform  = on ? 'translateX(16px)' : 'none';
+        };
+
+        document.getElementById('settings-units').checked       = isMetric;
+        document.getElementById('settings-timeformat').checked  = is24h;
+        document.getElementById('settings-dark-theme').checked  = isDark;
+        setToggle('settings-units-track',      'settings-units-thumb',      isMetric);
+        setToggle('settings-timeformat-track', 'settings-timeformat-thumb', is24h);
+        setToggle('settings-dark-track',       'settings-dark-thumb',       isDark);
+
+        document.getElementById('settings-modal-overlay').style.display = 'flex';
+      }
+
+      function closeSettingsModal() {
+        document.getElementById('settings-modal-overlay').style.display = 'none';
+      }
+
+      const makeToggleHandler = (trackId, thumbId) => (e) => {
+        const on = e.target.checked;
+        document.getElementById(trackId).style.background = on ? '#3b82d4' : '#c8cdd8';
+        document.getElementById(thumbId).style.transform  = on ? 'translateX(16px)' : 'none';
+      };
+
+      document.getElementById('settings-units').addEventListener('change',
+        makeToggleHandler('settings-units-track', 'settings-units-thumb'));
+      document.getElementById('settings-timeformat').addEventListener('change',
+        makeToggleHandler('settings-timeformat-track', 'settings-timeformat-thumb'));
+      document.getElementById('settings-dark-theme').addEventListener('change',
+        makeToggleHandler('settings-dark-track', 'settings-dark-thumb'));
+
+      document.getElementById('settings-cancel').addEventListener('click', closeSettingsModal);
+      document.getElementById('settings-modal-overlay').addEventListener('click', (e) => {
+        if (e.target === document.getElementById('settings-modal-overlay')) closeSettingsModal();
+      });
+
+      document.getElementById('settings-save').addEventListener('click', async () => {
+        const useMetric = document.getElementById('settings-units').checked;
+        const use24h    = document.getElementById('settings-timeformat').checked;
+        const useDark   = document.getElementById('settings-dark-theme').checked;
+
+        const newUnits  = useMetric ? 'metric' : 'imperial';
+        const newFormat = use24h    ? '24h'    : '12h';
+        const newTheme  = useDark   ? 'dark'   : 'light';
+
+        closeSettingsModal();
+
+        await saveOverrideConfig({ units: newUnits, timeFormat: newFormat, theme: newTheme });
+        localStorage.setItem('wx_units', newUnits);
+
+        // Apply theme immediately
+        const darkSheet = document.getElementById('theme-dark');
+        if (useDark) darkSheet.removeAttribute('disabled');
+        else         darkSheet.setAttribute('disabled', '');
+        AppConfig.theme = newTheme;
+
+        refreshWeather();
+      });
+
+      document.getElementById('settings-clear').addEventListener('click', async () => {
+        closeSettingsModal();
+        await clearConfig();
+      });
+
       // ── Location modal ──────────────────────────────────────────────────
       function openLocationModal() {
         const overlay = document.getElementById('modal-overlay');
@@ -280,15 +401,6 @@
         gpsCheckbox.checked = AppConfig.useGeolocation;
         gpsTrack.style.background = AppConfig.useGeolocation ? '#3b82d4' : '#c8cdd8';
         gpsThumb.style.transform  = AppConfig.useGeolocation ? 'translateX(16px)' : 'none';
-
-        // Reflect current dark theme toggle state
-        const darkCheckbox = document.getElementById('modal-dark-theme');
-        const darkTrack    = document.getElementById('modal-dark-track');
-        const darkThumb    = document.getElementById('modal-dark-thumb');
-        const isDark = AppConfig.theme === 'dark';
-        darkCheckbox.checked = isDark;
-        darkTrack.style.background = isDark ? '#3b82d4' : '#c8cdd8';
-        darkThumb.style.transform  = isDark ? 'translateX(16px)' : 'none';
 
         overlay.style.display = 'flex';
         latInput.focus();
@@ -310,13 +422,6 @@
         const on = e.target.checked;
         document.getElementById('modal-gps-track').style.background = on ? '#3b82d4' : '#c8cdd8';
         document.getElementById('modal-gps-thumb').style.transform  = on ? 'translateX(16px)' : 'none';
-      });
-
-      // Dark theme toggle visual behaviour
-      document.getElementById('modal-dark-theme').addEventListener('change', (e) => {
-        const on = e.target.checked;
-        document.getElementById('modal-dark-track').style.background = on ? '#3b82d4' : '#c8cdd8';
-        document.getElementById('modal-dark-thumb').style.transform  = on ? 'translateX(16px)' : 'none';
       });
 
       document.getElementById('modal-cancel').addEventListener('click', closeLocationModal);
@@ -383,21 +488,10 @@
 
         closeLocationModal();
 
-        const useGps  = document.getElementById('modal-use-gps').checked;
-        const useDark = document.getElementById('modal-dark-theme').checked;
-        const newTheme = useDark ? 'dark' : 'light';
+        const useGps = document.getElementById('modal-use-gps').checked;
 
         // Save to override file and apply live
-        await saveOverrideConfig({ latitude: lat, longitude: lon, useGeolocation: useGps, theme: newTheme });
-
-        // Apply theme change immediately without restart
-        const darkSheet = document.getElementById('theme-dark');
-        if (useDark) {
-          darkSheet.removeAttribute('disabled');
-        } else {
-          darkSheet.setAttribute('disabled', '');
-        }
-        AppConfig.theme = newTheme;
+        await saveOverrideConfig({ latitude: lat, longitude: lon, useGeolocation: useGps });
 
         if (useGps) {
           // Re-run coordinate resolution so GPS is tried immediately
