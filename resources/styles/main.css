@@ -5,6 +5,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button, [style*="cursor:pointer"], [style*="cursor: pointer"] {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  outline: none;
 }
 
 html, body {
@@ -216,11 +223,8 @@ html, body {
   cursor: pointer;
   padding: 2px 4px;
   border-radius: 4px;
-  transition: background 0.15s;
-}
-
-.unit-toggle:hover {
-  background: #dbeafe;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 #weather-condition {
