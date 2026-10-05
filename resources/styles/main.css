@@ -52,13 +52,13 @@ html, body {
    Clock panel — top half of left column
    ============================================================ */
 #panel-clock {
-  flex: 0 0 220px;
+  flex: 0 0 200px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 2px;
-  padding: 12px 8px;
+  padding: 6px 8px;
   background: #ffffff;
   border-bottom: 1px solid #c8cdd8;
 }
@@ -236,6 +236,16 @@ html, body {
 #weather-feels-like {
   font-size: 11px;
   color: #6b7694;
+}
+
+#weather-high-low {
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.today-hi-lo-sep {
+  font-size: 11px;
+  color: #9ca3b0;
 }
 
 /* Detail rows: wind, humidity, sunrise/sunset */
