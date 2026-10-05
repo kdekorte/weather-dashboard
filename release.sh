@@ -192,7 +192,7 @@ do_release() {
     info "Creating GitHub release ${TAG}"
 
     command -v gh >/dev/null 2>&1 || error "GitHub CLI (gh) is required. Install with: brew install gh"
-    gh auth status >/dev/null 2>&1 || error "Not authenticated with gh. Run: gh auth login"
+    gh auth status -h github.com >/dev/null 2>&1 || error "Not authenticated with gh. Run: gh auth login"
 
     git rev-parse "${TAG}" >/dev/null 2>&1 \
         || error "Tag ${TAG} does not exist. Run './release.sh tag' first."
