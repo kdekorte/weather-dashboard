@@ -64,6 +64,10 @@ html, body {
   color: #a8d8f0;
 }
 
+.today-hi-lo-sep {
+  color: #5a8aaa;
+}
+
 #current-details {
   border-top-color: #1a7cc2;
 }

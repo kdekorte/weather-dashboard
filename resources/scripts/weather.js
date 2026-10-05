@@ -179,6 +179,17 @@ function renderCurrent(data, locationName) {
   document.getElementById('weather-unit').textContent   = tempUnit();
   document.getElementById('weather-feels-like').textContent =
     `Feels like ${fmtTemp(c.apparent_temperature)}${tempUnit()}`;
+  const todayHi = daily.temperature_2m_max?.[0];
+  const todayLo = daily.temperature_2m_min?.[0];
+  const hlEl = document.getElementById('weather-high-low');
+  if (todayHi != null && todayLo != null) {
+    hlEl.innerHTML =
+      `<span class="fc-hi">${fmtTemp(todayHi)}°</span>` +
+      `<span class="today-hi-lo-sep"> / </span>` +
+      `<span class="fc-lo">${fmtTemp(todayLo)}°</span>`;
+  } else {
+    hlEl.innerHTML = '';
+  }
   document.getElementById('weather-condition').textContent = info.label;
   // Wind: rotating arrow SVG + direction label + speed
   const deg = c.wind_direction_10m;
