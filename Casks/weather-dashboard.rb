@@ -1,6 +1,6 @@
 cask "weather-dashboard" do
   version "1.0.8"
-  sha256 "81ef276ebde14c7688e02b342a85edefbefee9ee15549d90822a9329cac5296d"
+  sha256 "dc3e5c4cc3785bcc9df1d3b8f0647c87193a20514e14ebebba1275f09f3bdbdb"
 
   url "https://github.com/kdekorte/weather-dashboard/releases/download/v#{version}/weather-dashboard-macos-arm64-#{version}.tar.gz"
   name "Weather Dashboard"
