@@ -78,6 +78,20 @@ function fmtTime(isoString) {
   return `${String(h).padStart(2,'0')}:${m}`;
 }
 
+// ---- Fetch with timeout -------------------------------------------------
+
+const FETCH_TIMEOUT_MS = 15000;
+
+async function fetchWithTimeout(url, options = {}) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
+  try {
+    return await fetch(url, { ...options, signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 // ---- Reverse geocoding --------------------------------------------------
 
 let _cachedLocation = null;
@@ -86,7 +100,7 @@ async function fetchLocationName(lat, lon) {
   if (_cachedLocation) return _cachedLocation;
   try {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}&format=json`;
-    const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+    const res = await fetchWithTimeout(url, { headers: { 'Accept-Language': 'en' } });
     if (!res.ok) throw new Error('nominatim');
     const data = await res.json();
     const addr = data.address || {};
@@ -134,7 +148,7 @@ async function fetchWeather() {
   });
 
   const url = `https://api.open-meteo.com/v1/forecast?${params}`;
-  const res = await fetch(url);
+  const res = await fetchWithTimeout(url);
   if (!res.ok) throw new Error(`Open-Meteo HTTP ${res.status}`);
   return res.json();
 }

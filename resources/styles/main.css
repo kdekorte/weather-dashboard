@@ -140,6 +140,7 @@ html, body {
 
 /* Loading ring */
 .loading-ring {
+  display: none;
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 2px;
@@ -147,6 +148,10 @@ html, body {
   overflow: hidden;
   pointer-events: none;
   z-index: 10;
+}
+
+.loading-ring.active {
+  display: block;
 }
 
 .loading-ring.active::after {
